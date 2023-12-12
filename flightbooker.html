@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Welcome Page -->
+    <div id="welcomePage" class="p-6 bg-white shadow-md rounded-lg text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+        <h1 class="text-2xl font-bold mb-4">Welcome to Flight Booker</h1>
+        <p class="mb-4">Please enter your country</p>
+        <input type="text" id="country" class="border p-2 rounded mb-4" placeholder="Enter your country">
+        <button onclick="showSearchPage()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">Continue</button>
+    </div>
+
+    <!-- Search Page -->
+    <div id="searchPage" class="hidden min-h-screen flex flex-col justify-center items-center">
+        <div class="p-6 bg-white shadow-md rounded-lg">
+            <h1 class="text-2xl font-bold mb-4">Find the perfect flight</h1>
+            <p class="mb-4">Select your connecting airports?</p>
+            
+            <div class="flex gap-4 mb-4">
+                <select class="border p-2 rounded">
+                    <option>from</option>
+                </select>
+                <select class="border p-2 rounded">
+                    <option>to</option>
+                </select>
+            </div>
+            
+            <div class="flex gap-4 mb-4">
+                <select class="border p-2 rounded">
+                    <option>departure date</option>
+                </select>
+                <select class="border p-2 rounded">
+                    <option>return date</option>
+                </select>
+            </div>
+            
+            <button onclick="showFlightsPage()" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Search</button>
+        </div>
+    </div>
+
+    <!-- Flights Page -->
+    <div id="flightsPage" class=" rounded-lg text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden p-6 bg-white shadow-md rounded-lg">
+        <h2 class="text-xl font-semibold mb-4">Available Flights</h2>
+        <ul class="mb-4">
+            <li class="border p-2 rounded mb-2">Flight 1</li>
+            <li class="border p-2 rounded mb-2">Flight 2</li>
+            <li class="border p-2 rounded mb-2">Flight 3</li>
+        </ul>
+        <button onclick="showNotificationPrompt()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Checkout</button>
+    </div>
+
+    <!-- Notification Prompt -->
+    <div id="notificationPrompt" class=" rounded-lg text-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 hidden p-6 bg-white shadow-md rounded-lg">
+        <h3 class="text-lg font-semibold mb-4">Would you like to allow push notifications?</h3>
+        <div class="flex gap-4">
+            <button onclick="denyNotifications()" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">Deny</button>
+            <button onclick="allowNotifications()" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">Allow</button>
+        </div>
+    </div>
+
+    <!-- Airplane Image Placeholder -->
+    <div id="airplaneImage" class="hidden">
+        <img src="https://source.unsplash.com/featured/?airplane" alt="Airplane" class="rounded-lg shadow-md">
+    </div>
+
+    <script>
+        function showSearchPage() {
+            document.getElementById('welcomePage').classList.add('hidden');
+            document.getElementById('searchPage').classList.remove('hidden');
+        }
+        
+        function showFlightsPage() {
+            document.getElementById('searchPage').classList.add('hidden'); 
+            document.getElementById('flightsPage').classList.remove('hidden');
+        }
+
+        function showNotificationPrompt() {
+            document.getElementById('flightsPage').classList.add('hidden');
+            document.getElementById('notificationPrompt').classList.remove('hidden'); 
+        }
+
+        function denyNotifications() {
+            alert('Notifications denied.');
+            document.getElementById('notificationPrompt').classList.add('hidden');
+            document.getElementById('airplaneImage').classList.remove('hidden');
+        }
+
+        function allowNotifications() {
+            alert('Notifications allowed.');
+            document.getElementById('notificationPrompt').classList.add('hidden');
+            document.getElementById('airplaneImage').classList.remove('hidden');
+        }
+    </script>
+
+</body>
+</html>
